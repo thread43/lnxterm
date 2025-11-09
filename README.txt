@@ -33,3 +33,8 @@ cd lnxterm
 http://127.0.0.1:1234/
 admin/admin
 guest/guest
+
+
+
+-- demo
+https://www.bilibili.com/video/BV12tkDBsEFb/
