@@ -1,0 +1,64 @@
+/*
+https://github.com/ant-design/ant-design-pro/blob/master/src/components/GlobalHeader/index.less
+https://github.com/ant-design/ant-design-pro/blob/v4/src/components/GlobalHeader/index.less
+*/
+
+.MyRight {
+  display: flex;
+  float: right;
+  height: 48px;
+  margin-left: auto;
+  overflow: hidden;
+}
+
+.MyAction {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.MyAction > span {
+  vertical-align: middle;
+}
+.MyAction:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+/*
+// antd4
+node_modules/antd/lib/layout/style/index.css
+--------------------------------------------
+.ant-layout-header {
+  height: 64px;
+  padding: 0 50px;
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 64px;
+  background: #001529;
+}
+--------------------------------------------
+*/
+.MyHeader {
+  height: 48px !important;
+  padding: 0 !important;
+  line-height: 48px !important;
+  background-color: #fff !important;
+  padding-right: 16px !important;
+  display: flex;
+  width: 100%;
+}
+
+.MyTrigger {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 18px;
+  line-height: 48px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.MyTrigger:hover {
+  background-color: rgba(0, 0, 0, 0.025);
+}

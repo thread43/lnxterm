@@ -1,0 +1,9 @@
+/go.sum
+
+/lnxterm
+/lnxterm.db
+/lnxterm.log
+*.db
+*.log
+
+/.idea/

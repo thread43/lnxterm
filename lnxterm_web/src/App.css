@@ -1,0 +1,304 @@
+/*
+// antd4
+@import '~antd/dist/antd.less';
+// antd5
+import 'antd/dist/reset.css';
+*/
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.MyBreadcrumb {
+  margin: 16px 16px 0 16px !important;
+}
+
+.MyContent {
+  margin: 16px !important;
+  padding: 24px 24px 30px 24px !important;
+  overflow: initial !important;
+  background-color: #fff !important;
+  min-height: 360px !important;
+}
+
+.MyContentHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.MyContentHeaderTitle {
+  margin-right: auto;
+  padding-right: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: normal;
+  word-break: break-all;
+}
+
+.MyContent2 {
+  margin: 16px !important;
+  overflow: initial !important;
+  min-height: 360px !important;
+}
+
+.MyContentBlock {
+  background-color: #fff !important;
+  padding: 24px 24px 30px 24px !important;
+}
+
+.MyContentDivider {
+  margin-top: 16px;
+}
+
+.TreeIcon {
+  padding: 7px 250px 7px 7px;
+  border-radius: 3px;
+  border-collapse: collapse;
+  border-style: hidden;
+  transition: background-color 0.3s;
+}
+
+.TreeIcon:hover {
+  background-color: #f5f5f5;
+}
+
+.CenterDiv {
+  text-align: center;
+}
+
+.LeftDiv {
+  display: inline-block;
+  text-align: left;
+}
+
+/*
+// antd4
+node_modules/antd/lib/button/style/index.css
+--------------------------------------------
+.ant-btn {
+  line-height: 1.5715;
+  height: 32px;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 2px;
+}
+.ant-btn-sm {
+  height: 24px;
+  padding: 0px 7px;
+  font-size: 14px;
+  border-radius: 2px;
+}
+--------------------------------------------
+*/
+.ButtonLink {
+  /* height: 0 !important; */
+  height: 22px !important;
+  padding: 0 !important;
+}
+
+/*
+https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
+https://github.com/ant-design/ant-design/blob/master/components/style/color/colors.less
+
+https://github.com/ant-design/ant-design/blob/4.x-stable/components/style/themes/default.less
+https://github.com/ant-design/ant-design/blob/4.x-stable/components/style/color/colors.less
+
+@link-color = @primary-color = @blue-6 = @blue-base = #1890ff
+@link-hover-color = color(~`colorPalette('@{link-color}', 5) `) = #40a9ff
+
+.MenuItemLink {
+  color: @link-color !important;
+}
+.MenuItemLink:hover {
+  color: @link-hover-color !important;
+}
+*/
+
+/*
+// primary color changed from #1890ff to #1677ff
+https://ant.design/docs/react/migration-v5
+*/
+.MenuItemLink {
+  color: #1677ff !important;
+}
+.MenuItemLink:hover {
+  color: #4096ff !important;
+}
+
+/*
+// antd4
+node_modules/antd/lib/form/style/index.css
+------------------------------------------
+.ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  display: inline-block;
+  margin-right: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: '*';
+}
+------------------------------------------
+*/
+.Required::before {
+  display: inline-block;
+  margin-right: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: '*';
+}
+
+/*
+// antd4
+node_modules/antd/lib/form/style/index.css
+------------------------------------------
+.ant-form-item {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  margin-bottom: 24px;
+  vertical-align: top;
+  transition: margin-bottom 0.3s 0.017s linear;
+}
+------------------------------------------
+*/
+.MyForm > .ant-form-item {
+  margin-bottom: 12px !important;
+}
+
+/*
+https://github.com/ant-design/ant-design-pro/blob/master/src/global.less
+------------------------------------------------------------------------
+.ant-table {
+  width: 100%;
+  overflow-x: auto;
+  &-thead > tr,
+  &-tbody > tr {
+    > th,
+    > td {
+      white-space: pre;
+      > span {
+        display: block;
+      }
+    }
+  }
+}
+------------------------------------------------------------------------
+*/
+.ant-table {
+  width: 100%;
+  overflow-x: auto;
+}
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > th,
+.ant-table-thead > tr > td,
+.ant-table-tbody > tr > td {
+  white-space: pre;
+}
+.ant-table-thead > tr > th > span,
+.ant-table-tbody > tr > th > span,
+.ant-table-thead > tr > td > span,
+.ant-table-tbody > tr > td > span {
+  display: block;
+}
+table > thead.ant-table-thead > tr > th.ant-table-cell {
+  font-weight: normal !important;
+}
+
+/*
+// antd4
+node_modules/antd/lib/modal/style/index.css
+*/
+.ant-modal {
+  /* border: 1px solid red !important; */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.ant-modal-content {
+  /* border: 1px solid red !important; */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.ant-modal-header {
+  /* border: 1px solid red !important; */
+  margin: 0 !important;
+  padding: 16px 24px !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+}
+.ant-modal-header > .ant-modal-title {
+  font-weight: 500 !important;
+}
+.ant-modal-body {
+  /* border: 1px solid red !important; */
+  margin: 0 !important;
+  padding: 24px !important;
+}
+.ant-modal-footer {
+  /* border: 1px solid red !important; */
+  margin: 0 !important;
+  padding: 10px 16px !important;
+  border-top: 1px solid #f0f0f0 !important;
+}
+
+/*
+// antd4
+node_modules/antd/lib/drawer/style/index.css
+--------------------------------------------
+.ant-drawer-title {
+  flex: 1;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+}
+--------------------------------------------
+*/
+.ant-drawer-title {
+  font-weight: 500 !important;
+}
+
+/*
+// Sider Menu does not respect collapsedWidth prop #8601
+https://github.com/ant-design/ant-design/issues/8601
+// Collapsible sider is broken when collapsedWidth is specified #11422
+https://github.com/ant-design/ant-design/issues/11422
+
+@menu-collapsed-width: 48px;
+*/
+
+/*
+// Is there any way to disable all animations? #951
+https://github.com/ant-design/ant-design/issues/951
+https://ant.design/components/modal/#How-to-disable-motion
+https://4x.ant.design/components/modal/#How-to-disable-motion
+https://ant.design/docs/react/customize-theme#disable-motion
+*/
+
+* {
+  animation-delay: 0s !important;
+  animation-duration: 0s !important;
+  transition-delay: 0s !important;
+  transition-duration: 0s !important;
+}
+
+/*
+https://github.com/ant-design/ant-design/blob/master/components/spin/style/index.less#L166
+https://github.com/ant-design/ant-design/blob/4.x-stable/components/spin/style/index.less#L166
+*/
+
+.ant-spin-dot-spin {
+  animation-duration: 1.2s !important;
+}

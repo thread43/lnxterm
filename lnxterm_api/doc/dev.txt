@@ -1,0 +1,28 @@
+go mod init lnxterm
+
+go run main.go
+
+export GOPROXY=https://goproxy.cn
+go get
+go get -u
+
+go list
+go list -m all
+
+go mod tidy
+
+gofmt -w .
+
+go vet
+go vet ./...
+
+go test
+
+go build
+go build -ldflags="-s -w -extldflags=-static"
+
+---
+
+// https://github.com/docker/docs/issues/23132
+go get github.com/docker/docker/client@v28.3.1+incompatible
+go mod tidy

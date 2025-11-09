@@ -1,0 +1,9 @@
+upstream
+- client-go v0.34.1 (2025-09-10), https://github.com/kubernetes/client-go
+- docker v28.5.1+incompatible (2025-10-08), https://github.com/docker/docker
+- go v1.25.3 (2025-10-14), https://github.com/golang/go
+- go-sqlite3 v1.14.32 (2025-08-14), http://github.com/mattn/go-sqlite3
+- mysql v1.9.3 (2025-06-13), https://github.com/go-sql-driver/mysql
+- sessions v1.4.0 (2024-08-20), https://github.com/gorilla/sessions
+- sftp v1.13.10 (2025-10-23), https://github.com/pkg/sftp
+- websocket v1.5.4-0.20250319132907-e064f32e3674 (2025-03-19), https://github.com/gorilla/websocket
