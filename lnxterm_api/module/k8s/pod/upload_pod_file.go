@@ -14,7 +14,6 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
-	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/tools/remotecommand"
 
 	k8s_common "lnxterm/module/k8s/common"
@@ -71,12 +70,8 @@ func UploadPodFile(response http.ResponseWriter, request *http.Request) {
 	cluster_id2, err = strconv.ParseInt(cluster_id, 10, 64)
 	util.Raise(err)
 
-	var kubeconfig []byte
-	kubeconfig, err = k8s_common.GetKubeconfig(cluster_id2)
-	util.Raise(err)
-
 	var rest_config *rest.Config
-	rest_config, err = clientcmd.RESTConfigFromKubeConfig(kubeconfig)
+	rest_config, err = k8s_common.GetRestConfig(cluster_id2)
 	util.Raise(err)
 	// rest_config.Timeout = 5 * time.Second
 

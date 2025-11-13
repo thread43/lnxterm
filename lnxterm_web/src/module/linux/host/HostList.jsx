@@ -116,11 +116,11 @@ function HostList() {
       dataIndex: 'ssh',
       render: (text, record) => {
         if (record.ssh_host !== '') {
-          if (record.ssh_password !== '') {
+          if (record.ssh_private_key !== '') {
             return (
               <span>
                 <Tag>
-                  ssh {record.ssh_user}@{record.ssh_host}:{record.ssh_port} -p
+                  ssh {record.ssh_user}@{record.ssh_host}:{record.ssh_port} -i {record.ssh_private_key}
                 </Tag>
               </span>
             );
@@ -128,7 +128,7 @@ function HostList() {
             return (
               <span>
                 <Tag>
-                  ssh {record.ssh_user}@{record.ssh_host}:{record.ssh_port} -i {record.ssh_private_key}
+                  ssh {record.ssh_user}@{record.ssh_host}:{record.ssh_port} -p
                 </Tag>
               </span>
             );

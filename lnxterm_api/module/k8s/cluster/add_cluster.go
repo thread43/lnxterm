@@ -15,20 +15,31 @@ func AddCluster(response http.ResponseWriter, request *http.Request) {
 
 	var name string
 	var kubeconfig string
+	var server string
+	var token string
 	var remark string
 
 	name = strings.TrimSpace(request.FormValue("name"))
 	kubeconfig = strings.TrimSpace(request.FormValue("kubeconfig"))
+	server = strings.TrimSpace(request.FormValue("server"))
+	token = strings.TrimSpace(request.FormValue("token"))
 	remark = strings.TrimSpace(request.FormValue("remark"))
 
-	if util.IsNotSet(name, kubeconfig) {
+	if util.IsNotSet(name) {
 		util.Api(response, 400)
 		return
 	}
+	if util.IsNotSet(kubeconfig) {
+		if util.IsNotSet(server, token) {
+			util.Api(response, 400)
+			return
+		}
+	}
 
-	var server string
-	server, err = k8s_cluster_common.ParseServer(kubeconfig)
-	util.Raise(err)
+	if kubeconfig != "" {
+		server, err = k8s_cluster_common.ParseServer(kubeconfig)
+		util.Raise(err)
+	}
 
 	var create_time string
 	var update_time string
@@ -43,12 +54,12 @@ func AddCluster(response http.ResponseWriter, request *http.Request) {
 		var result sql.Result
 
 		query = `
-			INSERT INTO k8s_cluster (name, kubeconfig, server, remark, create_time, update_time)
-			VALUES (?,?,?,?,?,?)
+			INSERT INTO k8s_cluster (name, kubeconfig, server, token, remark, create_time, update_time)
+			VALUES (?,?,?,?,?,?,?)
 		`
 		result, err = util.DB.Exec(
 			query,
-			name, kubeconfig, server, remark, create_time, update_time,
+			name, kubeconfig, server, token, remark, create_time, update_time,
 		)
 		if err != nil {
 			log.Println(err)
@@ -71,7 +82,7 @@ func AddCluster(response http.ResponseWriter, request *http.Request) {
 		defer util.Catch()
 
 		var version string
-		version, err = k8s_cluster_common.GetVersion(kubeconfig)
+		version, err = k8s_cluster_common.GetVersion(kubeconfig, server, token)
 		util.Skip(err)
 
 		var query string

@@ -17,7 +17,6 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
-	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/tools/remotecommand"
 
 	k8s_common "lnxterm/module/k8s/common"
@@ -193,14 +192,14 @@ func WsOpenPodTerminal(response http.ResponseWriter, request *http.Request) {
 	cluster_id2, err = strconv.ParseInt(cluster_id, 10, 64)
 	util.Raise(err)
 
-	var kubeconfig []byte
-	kubeconfig, err = k8s_common.GetKubeconfig(cluster_id2)
+	var rest_config *rest.Config
+	rest_config, err = k8s_common.GetRestConfig(cluster_id2)
 	util.Raise(err)
 
 	var pod map[string]interface{}
 	pod = make(map[string]interface{})
 	pod = map[string]interface{}{
-		"kubeconfig":     kubeconfig,
+		"rest_config":    rest_config,
 		"namespace":      namespace,
 		"pod_name":       pod_name,
 		"container_name": container_name,
@@ -238,23 +237,24 @@ func StartProcess(pty_handler PtyHandler, pod map[string]interface{}) {
 
 	var err error
 
-	var kubeconfig []byte
+	var rest_config *rest.Config
 	var namespace string
 	var pod_name string
 	var container_name string
 	var command string
 
-	kubeconfig, _ = pod["kubeconfig"].([]byte)
+	rest_config, _ = pod["rest_config"].(*rest.Config)
 	namespace, _ = pod["namespace"].(string)
 	pod_name, _ = pod["pod_name"].(string)
 	container_name, _ = pod["container_name"].(string)
 	command, _ = pod["command"].(string)
 
-	var rest_config *rest.Config
-	// rest_config, err = clientcmd.BuildConfigFromFlags("", kubeconfig)
-	rest_config, err = clientcmd.RESTConfigFromKubeConfig(kubeconfig)
-	util.Raise(err)
-	rest_config.Timeout = 5 * time.Second
+	// var rest_config *rest.Config
+	// // rest_config, err = clientcmd.BuildConfigFromFlags("", kubeconfig)
+	// // rest_config.InsecureSkipTLSVerify = true
+	// rest_config, err = clientcmd.RESTConfigFromKubeConfig(kubeconfig)
+	// util.Raise(err)
+	// rest_config.Timeout = 5 * time.Second
 
 	var clientset *kubernetes.Clientset
 	clientset, err = kubernetes.NewForConfig(rest_config)

@@ -162,7 +162,7 @@ function HostTerminal() {
         destroyOnHidden="true"
         styles={{mask: {opacity: '0.1', animation: 'none'}}}
         width={1000}
-        maskClosable={false}
+        // maskClosable={false}
         open={storeHostTerminalVisible}
         onCancel={() => dispatch(store.setHostTerminalVisible(false))}
         footer={[

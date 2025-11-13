@@ -42,14 +42,20 @@ function ClusterFormUpdate() {
   async function update() {
     const cluster = form.getFieldsValue();
 
-    const {name, kubeconfig} = cluster;
+    const {name, kubeconfig, server, token} = cluster;
     if (name === undefined || name.trim() === '') {
       message.info('Name is required');
       return;
     }
     if (kubeconfig === undefined || kubeconfig.trim() === '') {
-      message.info('Kubeconfig is required');
-      return;
+      if (server === undefined || server.trim() === '') {
+        message.info('Either Kubeconfig or Server+Token is required');
+        return;
+      }
+      if (token === undefined || token.trim() === '') {
+        message.info('Either Kubeconfig or Server+Token is required');
+        return;
+      }
     }
 
     try {
@@ -75,6 +81,7 @@ function ClusterFormUpdate() {
         centered={true}
         destroyOnHidden="true"
         styles={{mask: {opacity: '0.1', animation: 'none'}}}
+        width={600}
         open={storeClusterFormUpdateVisible}
         loading={stateLoading}
         okText="Submit"
@@ -84,8 +91,8 @@ function ClusterFormUpdate() {
         <Form
           form={form}
           layout="horizontal"
-          labelCol={{span: 9}}
-          wrapperCol={{span: 9}}
+          labelCol={{span: 8}}
+          wrapperCol={{span: 12}}
         >
           <Form.Item name="id" label="ID" style={{display: 'none'}}>
             <Input />
@@ -95,8 +102,20 @@ function ClusterFormUpdate() {
             <Input />
           </Form.Item>
 
-          <Form.Item name="kubeconfig" label="Kubeconfig" required>
+          <Form.Item
+            name="kubeconfig"
+            label="Kubeconfig"
+            help="Either Kubeconfig or Server+Token is required, if both provided, use Kubeconfig"
+          >
             <Input />
+          </Form.Item>
+
+          <Form.Item name="server" label="Server">
+            <Input />
+          </Form.Item>
+
+          <Form.Item name="token" label="Token">
+            <Input.TextArea />
           </Form.Item>
 
           <Form.Item name="remark" label="Remark">

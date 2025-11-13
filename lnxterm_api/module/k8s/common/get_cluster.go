@@ -15,7 +15,7 @@ func GetCluster(id int64) (map[string]interface{}, error) {
 	{
 		var query string
 		query = `
-			SELECT id, name, kubeconfig, remark, create_time, update_time
+			SELECT id, name, kubeconfig, server, token, remark, create_time, update_time
 			FROM k8s_cluster
 			WHERE id=?
 		`
@@ -26,11 +26,13 @@ func GetCluster(id int64) (map[string]interface{}, error) {
 		var id2 sql.NullInt64
 		var name sql.NullString
 		var kubeconfig sql.NullString
+		var server sql.NullString
+		var token sql.NullString
 		var remark sql.NullString
 		var create_time sql.NullString
 		var update_time sql.NullString
 
-		err = row.Scan(&id2, &name, &kubeconfig, &remark, &create_time, &update_time)
+		err = row.Scan(&id2, &name, &kubeconfig, &server, &token, &remark, &create_time, &update_time)
 		if err != nil {
 			return nil, err
 		}
@@ -39,6 +41,8 @@ func GetCluster(id int64) (map[string]interface{}, error) {
 			"id":          id2.Int64,
 			"name":        name.String,
 			"kubeconfig":  kubeconfig.String,
+			"server":      server.String,
+			"token":       token.String,
 			"remark":      remark.String,
 			"create_time": util.TimeOf(create_time.String),
 			"update_time": util.TimeOf(update_time.String),

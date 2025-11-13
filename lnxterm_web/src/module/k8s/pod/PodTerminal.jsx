@@ -212,7 +212,7 @@ function PodTerminal() {
         destroyOnHidden="true"
         styles={{mask: {opacity: '0.1', animation: 'none'}}}
         width={1000}
-        maskClosable={false}
+        // maskClosable={false}
         open={storePodTerminalVisible}
         onCancel={() => onCancel()}
         footer={[

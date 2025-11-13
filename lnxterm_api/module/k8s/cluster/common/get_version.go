@@ -11,20 +11,30 @@ import (
 	k8s_common "lnxterm/module/k8s/common"
 )
 
-func GetVersion(kubeconfig string) (string, error) {
+func GetVersion(kubeconfig string, server string, token string) (string, error) {
 	var err error
 
-	var kubeconfig2 []byte
-	kubeconfig2, err = k8s_common.ParseKubeconfig(kubeconfig)
-	if err != nil {
-		return "", err
+	var rest_config *rest.Config
+
+	if kubeconfig != "" {
+		var kubeconfig2 []byte
+		kubeconfig2, err = k8s_common.ParseKubeconfig(kubeconfig)
+		if err != nil {
+			return "", err
+		}
+
+		rest_config, err = clientcmd.RESTConfigFromKubeConfig(kubeconfig2)
+		if err != nil {
+			return "", err
+		}
+	} else {
+		rest_config = &rest.Config{
+			Host:            server,
+			BearerToken:     token,
+			TLSClientConfig: rest.TLSClientConfig{Insecure: true},
+		}
 	}
 
-	var rest_config *rest.Config
-	rest_config, err = clientcmd.RESTConfigFromKubeConfig(kubeconfig2)
-	if err != nil {
-		return "", err
-	}
 	rest_config.Timeout = 5 * time.Second
 
 	var discovery_client *discovery.DiscoveryClient

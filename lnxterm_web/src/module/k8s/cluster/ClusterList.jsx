@@ -92,9 +92,19 @@ function ClusterList() {
       key: 'server',
       title: 'Server',
       dataIndex: 'server',
-      render: (text) => (
-        <a href={text} target="_blank">{text}&nbsp;<ExportOutlined /></a>
-      ),
+      render: (text) => {
+        if (text !== '') {
+          return (<a href={text} target="_blank">{text}&nbsp;<ExportOutlined /></a>);
+        } else {
+          return ('');
+        }
+      }
+    },
+    {
+      key: 'token',
+      title: 'Token',
+      dataIndex: 'token',
+      render: (text) => (text !== '') ? ('******') : (''),
     },
     {
       key: 'version',

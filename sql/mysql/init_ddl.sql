@@ -155,6 +155,7 @@ CREATE TABLE k8s_cluster (
   name VARCHAR(128),
   kubeconfig TEXT,
   server VARCHAR(256),
+  token TEXT,
   version VARCHAR(128),
   is_active INTEGER,
   remark VARCHAR(128),

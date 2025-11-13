@@ -30,7 +30,7 @@ func GetCluster(response http.ResponseWriter, request *http.Request) {
 		var query string
 		query = `
 			SELECT
-				id, name, kubeconfig, server, version,
+				id, name, kubeconfig, server, token, version,
 				remark, create_time, update_time
 			FROM k8s_cluster
 			WHERE id=?
@@ -43,13 +43,14 @@ func GetCluster(response http.ResponseWriter, request *http.Request) {
 		var name sql.NullString
 		var kubeconfig sql.NullString
 		var server sql.NullString
+		var token sql.NullString
 		var version sql.NullString
 		var remark sql.NullString
 		var create_time sql.NullString
 		var update_time sql.NullString
 
 		err = row.Scan(
-			&id, &name, &kubeconfig, &server, &version,
+			&id, &name, &kubeconfig, &server, &token, &version,
 			&remark, &create_time, &update_time,
 		)
 		util.Raise(err)
@@ -59,6 +60,7 @@ func GetCluster(response http.ResponseWriter, request *http.Request) {
 			"name":        name.String,
 			"kubeconfig":  kubeconfig.String,
 			"server":      server.String,
+			"token":       token.String,
 			"version":     version.String,
 			"remark":      remark.String,
 			"create_time": util.TimeOf(create_time.String),

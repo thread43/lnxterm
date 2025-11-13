@@ -166,7 +166,7 @@ function ContainerTerminal() {
         destroyOnHidden="true"
         styles={{mask: {opacity: '0.1', animation: 'none'}}}
         width={1000}
-        maskClosable={false}
+        // maskClosable={false}
         open={storeContainerTerminalVisible}
         onCancel={() => dispatch(store.setContainerTerminalVisible(false))}
         footer={[

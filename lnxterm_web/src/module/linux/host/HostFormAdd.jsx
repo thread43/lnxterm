@@ -83,7 +83,11 @@ function HostFormAdd() {
             <Input />
           </Form.Item>
 
-          <Form.Item name="ssh_private_key" label="SSH Key">
+          <Form.Item
+            name="ssh_private_key"
+            label="SSH Private Key"
+            help="Either Password or Key is required, if both provided, use Key"
+          >
             <Input />
           </Form.Item>
 

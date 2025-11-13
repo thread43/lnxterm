@@ -33,11 +33,8 @@ func GetSshClientConfig(host map[string]interface{}) (string, *ssh.ClientConfig,
 	log.Println(ssh_private_key)
 
 	var auth []ssh.AuthMethod
-	if ssh_password != "" {
-		log.Println("using password")
-		auth = []ssh.AuthMethod{ssh.Password(ssh_password)}
-	} else {
-		log.Println("using pubkey")
+	if ssh_private_key != "" {
+		log.Println("using key")
 
 		var pem_bytes []byte
 		pem_bytes, err = os.ReadFile(ssh_private_key)
@@ -52,6 +49,9 @@ func GetSshClientConfig(host map[string]interface{}) (string, *ssh.ClientConfig,
 		}
 
 		auth = []ssh.AuthMethod{ssh.PublicKeys(signer)}
+	} else {
+		log.Println("using password")
+		auth = []ssh.AuthMethod{ssh.Password(ssh_password)}
 	}
 
 	// ":22" = "127.0.0.1:22"

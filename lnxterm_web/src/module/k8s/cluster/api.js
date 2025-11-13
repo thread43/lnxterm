@@ -1,11 +1,19 @@
 import http from '../../../util/http.js';
 
 function add_cluster(cluster) {
-  const {name, kubeconfig, remark} = cluster;
+  const {name, kubeconfig, server, token, remark} = cluster;
 
   const formData = new FormData();
   formData.append('name', name);
-  formData.append('kubeconfig', kubeconfig);
+  if (kubeconfig !== undefined) {
+    formData.append('kubeconfig', kubeconfig);
+  }
+  if (server !== undefined) {
+    formData.append('server', server);
+  }
+  if (token !== undefined) {
+    formData.append('token', token);
+  }
   if (remark !== undefined) {
     formData.append('remark', remark);
   }
@@ -33,12 +41,23 @@ function get_events(cluster_id) {
 }
 
 function update_cluster(cluster) {
-  const {id, name, kubeconfig, remark} = cluster;
+  const {id, name, kubeconfig, server, token, remark} = cluster;
 
   const formData = new FormData();
   formData.append('id', id);
   formData.append('name', name);
-  formData.append('kubeconfig', kubeconfig);
+  if (kubeconfig !== undefined) {
+    formData.append('kubeconfig', kubeconfig);
+  }
+  if (server !== undefined) {
+    formData.append('server', server);
+  }
+  if (token !== undefined) {
+    formData.append('token', token);
+  }
+  if (remark !== undefined) {
+    formData.append('remark', remark);
+  }
   if (remark !== undefined) {
     formData.append('remark', remark);
   }
